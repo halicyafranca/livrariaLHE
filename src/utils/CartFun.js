@@ -7,7 +7,8 @@ function useCart (){
 
 function AdicionarCarrinho(id, quantidadeInformada = 1) {
     const livroNoCarrinho = carrinho.value.find(item => item.id === id);
-   if (livroNoCarrinho) {
+    if (quantidadeInformada >0) {
+         if (livroNoCarrinho ) {
      livroNoCarrinho.quantidade+= quantidadeInformada
    }
    else{
@@ -16,6 +17,7 @@ function AdicionarCarrinho(id, quantidadeInformada = 1) {
         carrinho.value.push({ ...livroOriginal, quantidade: quantidadeInformada })
       }
    }
+    }
 }
  function DecrementarCarrinho(id, quantidadeInformada = 1) {
     const livroNoCarrinho = carrinho.value.find(item => item.id === id)
