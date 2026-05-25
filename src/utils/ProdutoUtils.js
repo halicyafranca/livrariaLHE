@@ -1,4 +1,4 @@
-import { moedaPais, idioma } from "./global";
+import { moedaPais, idioma } from "./Global";
 
 function formataPreco(preco){
     return Number(preco).toLocaleString(idioma, {
