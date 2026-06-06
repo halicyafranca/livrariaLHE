@@ -3,6 +3,11 @@ const livros = [
     {id:2, titulo:'O Alienista', preco:20, genero:'Classico', imagem:'../public/images/OAlienista.png'},
     {id:3, titulo:'Ordem Paranormal', preco:25, genero:'Classico', imagem:'../public/images/Ordem.png'},
     {id:4, titulo:'Jogos do Anfitrião', preco:90, genero:'Classico', imagem:'../public/images/Anfitriao.png'},
+  {id:5, titulo:'A Hora da Estrela', preco:50, genero:'Classico', imagem:'../public/images/Hora.png'},
+    {id:6, titulo:'Harry Potter e o Cálice de Fogo', preco:120, genero:'Classico', imagem:'../public/images/Harry.png'},
+        {id:7, titulo:'A Lanterna das Memórias Perdidas', preco:30, genero:'Classico', imagem:'../public/images/Lanterna.png'},
+        {id:8, titulo:'Tatu-Balão', preco:20, genero:'Classico', imagem:'../public/images/Tatu.png'},
+
 
 ]
 
