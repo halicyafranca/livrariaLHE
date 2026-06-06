@@ -26,7 +26,7 @@ livros.value = livros.value.filter(p => p.id === 5);
      <section class="recomendacoes">
          
          <div class="caixinha">
-             <h2>Você pode gostar...</h2>
+             <h2>Você pode gostar..</h2>
              
              <ProdutosList v-for="produto in livrosFiltradas" :key="produto.id"  
        :id="produto.id"
