@@ -45,6 +45,7 @@ function Adicionar(id, quantidade) {
     align-items: center;
     text-align: center;
     margin: 40px;
+    
 }
 .prod-List h2 {
     font-weight: bold;
