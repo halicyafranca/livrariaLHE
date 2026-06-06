@@ -6,7 +6,6 @@ import CartPainel from '@/components/Cart/CartPainel.vue';
 <main>
 <CartPainel/>
 </main>
- 
 </template>
 <style scoped>
 </style>

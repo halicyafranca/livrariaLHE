@@ -1,8 +1,11 @@
 <script setup>
 import { RouterLink } from 'vue-router';
 import { cart } from '@/utils/CartFun';
+
 const {
-    filtro
+    filtro,
+    quantidadeTotal,
+    valorTotal,
 } = cart
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import {
@@ -11,6 +14,7 @@ import {
   faHeart,
   faUser
 } from '@fortawesome/free-solid-svg-icons'
+import { formataPreco } from '@/utils/ProdutoUtils';
 
 
 </script>
@@ -21,7 +25,7 @@ import {
 
       <div class="navbar-links">
             <RouterLink to="/home">Home</RouterLink>
-            <RouterLink to="/livraria">Livraria</RouterLink>
+           
     </div>
 
       <div class="pesquisa">
@@ -33,7 +37,7 @@ import {
 
         <div class="opcao">
           <FontAwesomeIcon :icon="faHeart" class="icone"/>
-          <span>Lista de desejos</span>
+          <RouterLink to="/favoritos" class="desejos">Lista de desejos</RouterLink>
         </div>
 
         <div class="opcao">
@@ -44,22 +48,16 @@ import {
         <RouterLink to="/carrinho" class="carrinho">
           <FontAwesomeIcon :icon="faBagShopping" class="icone"/>
              <div class="carrinho-info">
-             <span>O item</span>
-             <strong>R$0,00</strong>
+             <span>{{ quantidadeTotal }} item</span>
+             <strong>{{ formataPreco(valorTotal) }}</strong>
              </div>
         </RouterLink>
-
       </div>
-
-    </nav>
-
-    
+    </nav> 
   </header>
 </template>
 
 <style scoped>
-
-
 header {
   background: #e8d8c4;
 }
@@ -75,7 +73,9 @@ nav {
 
   padding: 0 30px;
 }
-
+.desejos {
+  text-decoration: none;
+}
 .logo {
   font-size: 1.8rem;
   font-weight: 700;
@@ -182,6 +182,4 @@ nav {
 .navbar-links a:hover {
   color: #8c3247;
 }
-
-
 </style>

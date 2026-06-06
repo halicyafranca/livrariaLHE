@@ -3,6 +3,7 @@ import { ref, computed } from "vue";
 const carrinho = ref([])
 const filtro = ref('');
 const livros = ref([...listaLivros])
+const favoritos = ref([])
 function useCart (){
 
 function AdicionarCarrinho(id, quantidadeInformada = 1) {
@@ -56,7 +57,19 @@ function filtrarTarefas(livros, filtro) {
     return livros.value
   }
 }
+function AdicionarFav(id) {
+    const livroNoFavoritos = favoritos.value.find(item => item.id === id);
+         if (livroNoFavoritos) {
+     favoritos.splice(livroNoFavoritos,1)
+   }
+   else{
+    const livroOriginal = listaLivros.find(t => t.id === id);
+      if (livroOriginal) {
+        favoritos.value.push({ ...livroOriginal })
+      }
+   }
 
+}
 
 const livrosFiltradas = computed(() => {
   return filtrarTarefas(livros.value,filtro.value)
@@ -71,7 +84,9 @@ return {
     valorTotal,
     filtrarTarefas,
     livrosFiltradas,
-    filtro
+    filtro,
+    AdicionarFav,
+    favoritos
 }
 }
 const cart = useCart()
