@@ -70,16 +70,16 @@ function filtrarTarefas(livros, filtroTexto, genero) {
 }
 
 function AdicionarFav(id) {
-    const livroNoFavoritos = favoritos.value.find(item => item.id === id);
-         if (livroNoFavoritos) {
-     favoritos.splice(livroNoFavoritos,1)
-   }
-   else{
+  const index = favoritos.value.findIndex(item => item.id === id);
+  
+  if (index !== -1) {
+    favoritos.value.splice(index, 1);
+  } else {
     const livroOriginal = listaLivros.find(t => t.id === id);
-      if (livroOriginal) {
-        favoritos.value.push({ ...livroOriginal })
-      }
-   }
+    if (livroOriginal) {
+      favoritos.value.push({ ...livroOriginal });
+    }
+  }
 }
 
 
