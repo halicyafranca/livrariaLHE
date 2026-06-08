@@ -47,7 +47,7 @@ main {
 }
 
 h2 {
-    color: #fff;
+    color: #5c272e;
     font-size: 2vw;
     margin: 0; 
 }
