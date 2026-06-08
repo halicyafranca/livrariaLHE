@@ -2,25 +2,30 @@
 import ProdutosList from '@/components/produtos/ProdutosList.vue';
 import { cart } from '@/utils/CartFun';
 import { computed } from 'vue';
+
 const {
-    livrosFiltradas,
+    livros 
 } = cart
-const produtosExibir = computed (()=> {
-    return livrosFiltradas.value.slice(0,3)
+
+
+const produtosExibir = computed(() => {
+    return livros.value.slice(0, 3)
 })
 </script>
+
 <template>
-       <section class="recomendacoes">
-         
-         <div class="caixinha">
-             <h2>Você pode gostar..</h2>
-             
-             <ProdutosList v-for="produto in produtosExibir" :key="produto.id"  
-     :produto="produto"
-       class="produto-list">
-  </ProdutosList>
-  </div>
-</section>
+  <section class="recomendacoes">
+    <div class="caixinha">
+      <h2>Você pode gostar..</h2>
+      
+      <ProdutosList 
+        v-for="produto in produtosExibir" 
+        :key="produto.id"  
+        :produto="produto"
+        class="produto-list2"
+      />
+    </div>
+  </section>
 </template>
 <style scoped>
 
