@@ -28,7 +28,7 @@ const {
   <ButtonChild class="btn" @clique="AdicionarCarrinho(props.id,1)">+</ButtonChild>
 </div>
 
-<ButtonChild class="btn-remover" @clique="RemoverDoCarrinho(props.id)"> </ButtonChild>
+<ButtonChild class="btn-remover" @clique="RemoverDoCarrinho(props.id)"> <FontAwesomeIcon class="icon" :icon="faTrash" /> </ButtonChild>
 
 </div>
 </template>
@@ -70,6 +70,15 @@ const {
     text-align: left;
     margin-left: 20px;
     font-weight: 400;
+}
+
+.btn-remover{
+    background-color: #C5AF90 ;
+    border: none; 
+    margin-right: 5px;
+}
+.icon{
+    height: 20px;
 }
 
 </style>
