@@ -2,6 +2,8 @@
 import { cart} from '@/utils/CartFun';
 import { formataPreco } from '@/utils/ProdutoUtils';
 import ButtonChild from '../ButtonChild.vue';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 const props = defineProps(['id','titulo','genero','preco', 'imagem', 'quantidade'])
 const {
     AdicionarCarrinho,
