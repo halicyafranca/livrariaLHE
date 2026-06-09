@@ -1,9 +1,12 @@
 import { listaLivros } from "@/data/produtos";
 import { ref, computed } from "vue";
+
 const carrinho = ref([])
 const filtro = ref('');
+const filtroGenero = ref('');
 const livros = ref([...listaLivros])
 const favoritos = ref([])
+
 function useCart (){
 
 function AdicionarCarrinho(id, quantidadeInformada = 1) {
@@ -48,34 +51,43 @@ const valorTotal = computed(()=> {
     }
     return totalValor
 })
-function filtrarTarefas(livros, filtro) {
-  if (!filtro) return livros
-    if (String(filtro.value).trim().length > 0 ) {
-    return livros.filter(item => item.titulo.toLowerCase().includes(filtro.toLowerCase()));
-  }
-  else{
-    return livros.value
-  }
-}
-function AdicionarFav(id) {
-    const livroNoFavoritos = favoritos.value.find(item => item.id === id);
-         if (livroNoFavoritos) {
-     favoritos.splice(livroNoFavoritos,1)
-   }
-   else{
-    const livroOriginal = listaLivros.find(t => t.id === id);
-      if (livroOriginal) {
-        favoritos.value.push({ ...livroOriginal })
-      }
-   }
 
+
+function filtrarTarefas(livros, filtroTexto, genero) {
+  let resultado = livros;
+
+ 
+  if (genero && genero.trim().length > 0) {
+    resultado = resultado.filter(item => item.genero === genero);
+  }
+
+
+  if (filtroTexto && String(filtroTexto).trim().length > 0) {
+    resultado = resultado.filter(item => item.titulo.toLowerCase().includes(filtroTexto.toLowerCase()));
+  }
+
+  return resultado;
 }
+
+function AdicionarFav(id) {
+  const index = favoritos.value.findIndex(item => item.id === id);
+  
+  if (index !== -1) {
+    favoritos.value.splice(index, 1);
+  } else {
+    const livroOriginal = listaLivros.find(t => t.id === id);
+    if (livroOriginal) {
+      favoritos.value.push({ ...livroOriginal });
+    }
+  }
+}
+
 
 const livrosFiltradas = computed(() => {
-  return filtrarTarefas(livros.value,filtro.value)
+  return filtrarTarefas(livros.value, filtro.value, filtroGenero.value)
 })
- console.log(carrinho.value)
-return {
+
+ return {
     carrinho,
     AdicionarCarrinho,
     DecrementarCarrinho,
@@ -84,7 +96,9 @@ return {
     valorTotal,
     filtrarTarefas,
     livrosFiltradas,
+    livros, 
     filtro,
+    filtroGenero,
     AdicionarFav,
     favoritos
 }

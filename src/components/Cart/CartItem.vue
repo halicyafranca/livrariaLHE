@@ -30,11 +30,12 @@ const {
   <ButtonChild class="btn" @clique="AdicionarCarrinho(props.id,1)">+</ButtonChild>
 </div>
 
-<ButtonChild class="btn-remover" @clique="RemoverDoCarrinho(props.id)"> <FontAwesomeIcon class="icon" :icon="faTrash" /></ButtonChild>
+<ButtonChild class="btn-remover" @clique="RemoverDoCarrinho(props.id)"> <FontAwesomeIcon class="icon" :icon="faTrash" /> </ButtonChild>
 
 </div>
 </template>
 <style scoped>
+
 .carrinho-item{
    display: flex;
    justify-content: space-between;
@@ -56,6 +57,7 @@ const {
 }
 .info{
     display: flex;
+    margin: 5vw;
 }
 .btn{
     border: none;
@@ -71,6 +73,7 @@ const {
     margin-left: 20px;
     font-weight: 400;
 }
+
 .btn-remover{
     background-color: #C5AF90 ;
     border: none; 
@@ -79,4 +82,5 @@ const {
 .icon{
     height: 20px;
 }
+
 </style>

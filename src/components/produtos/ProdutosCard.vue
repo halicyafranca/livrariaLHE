@@ -1,13 +1,21 @@
 <script setup>
 const props = defineProps(['id','titulo','genero','preco', 'imagem'])
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import ButtonChild from '../ButtonChild.vue';
 import { formataPreco } from '@/utils/ProdutoUtils';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
- import{ faHeart } from '@fortawesome/free-solid-svg-icons'
+import { cart } from '@/utils/CartFun';
+
 const emit = defineEmits(['AdicionarCarrinho', 'Fechar', 'AdicionarFav'])
+
 const quantidade = ref(1)
+
+const { favoritos } = cart;
+
+const isFavorito = computed(() => {
+  return favoritos.value.some(item => item.id === props.id);
+});
 </script>
+
 <template>
   <div class="overlay">
        <div class="produto-card">
@@ -25,25 +33,45 @@ const quantidade = ref(1)
         <input type="number" v-model.number="quantidade" class="caixa">
         <ButtonChild class="btn" @clique="emit('AdicionarCarrinho',props.id , quantidade)">Adicionar</ButtonChild>
 </div>
-<ButtonChild class="fav" @clique="emit('AdicionarFav',props.id)"> <FontAwesomeIcon :icon="faHeart" class="icone"/> </ButtonChild>
+
+<ButtonChild 
+  class="fav" 
+  :class="{ 'favoritado': isFavorito }" 
+  @clique="emit('AdicionarFav', props.id)"
+> 
+  <i v-if="isFavorito" class="fa-solid fa-heart icone"></i>
+  <i v-else class="fa-regular fa-heart icone"></i>
+</ButtonChild>
+
     <ButtonChild class="btn" @clique="emit('Fechar')">Cancelar</ButtonChild>
 
        </div>
   </div>
 </template>
+
 <style scoped>
 .produto-card{
-    padding: 16px;
-    margin-top: 16px;
-    background: #C5AF90;
+    padding: 2.5vw;
+    background: #c5af90f0;
+    border-radius: 20px;
 }
 .icone {
   font-size: 2em;
+  color: #5E1922; 
+  transition: transform 0.2s, color 0.2s;
+  margin: 15px;
 }
 .fav{
     border: none;
     background:#C5AF90 ;
+    cursor: pointer;
 }
+
+.fav.favoritado .icone {
+  color: #6A2931;
+  transform: scale(1.1);
+}
+
 .info{
     display: flex;
 }
@@ -58,6 +86,7 @@ const quantidade = ref(1)
     z-index: 1000;
 }
 .btn{
+    margin: 13px;
     padding: 5px 10px;
     border-radius: 20px;
     border: none;
